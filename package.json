@@ -1,22 +1,35 @@
 {
 	"name": "time-tracker",
 	"version": "1.0.0",
-	"main": "main.mjs",
 	"type": "module",
+	"main": "index.js",
 	"scripts": {
-		"start": "nodemon --exec electron .",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"lint": "eslint 'src/**/*.{js,ts}'",
+		"format": "prettier --write 'src/**/*.{js,ts,json,html}'",
+		"build": "tsc",
+		"start": "npm run build && electron .",
+		"dev": "nodemon --watch src --ext ts,js --ignore src/**/*.test.ts --exec ts-node ./src/main.ts"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"description": "",
+	"dependencies": {
+		"electron": "^32.1.2"
+	},
 	"devDependencies": {
 		"@eslint/js": "^9.11.1",
-		"electron": "^32.1.2",
+		"@types/electron": "^1.4.38",
+		"@types/node": "^22.7.4",
+		"@typescript-eslint/eslint-plugin": "^8.8.0",
+		"@typescript-eslint/parser": "^8.8.0",
 		"eslint": "^9.11.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.1",
-		"globals": "^15.9.0"
+		"nodemon": "^3.1.7",
+		"prettier": "^3.3.3",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.6.2",
+		"typescript-eslint": "^8.8.0"
 	}
 }

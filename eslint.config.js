@@ -1,9 +1,12 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
+// @ts-check
 
-export default [
-	{ languageOptions: { globals: globals.browser } },
-	pluginJs.configs.recommended,
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import prettier from 'eslint-plugin-prettier';
+
+export default tseslint.config(
+	eslint.configs.recommended,
+	...tseslint.configs.recommended,
 	{
 		rules: {
 			'padding-line-between-statements': [
@@ -13,5 +16,8 @@ export default [
 				{ blankLine: 'always', prev: 'const', next: '*' },
 			],
 		},
-	},
-];
+		plugins: {
+			prettier: prettier,
+		},
+	}
+);

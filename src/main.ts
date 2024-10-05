@@ -1,23 +1,25 @@
-import { app, BrowserWindow } from 'electron';
-import path from 'path';
+import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron';
+import Task from './models/Task';
+import { v4 as uuidv4 } from 'uuid';
+
+const taskList: Task[] = [];
 
 const createWindow = () => {
 	const win = new BrowserWindow({
 		width: 800,
 		height: 600,
 		webPreferences: {
-			contextIsolation: true,
-			sandbox: false,
-			preload: path.join(__dirname, '/src/preload.mjs'),
+			preload: __dirname + '/preload.js',
 		},
-		autoHideMenuBar: true,
 	});
 
-	win.loadFile(path.join(__dirname, '/public/index.html'));
-
-	//win.webContents.openDevTools();
+	win.loadFile('./index.html');
+	win.on('ready-to-show', () => win.show());
 };
 
-app.whenReady().then(() => {
-	createWindow();
+app.on('ready', createWindow);
+app.on('window-all-closed', () => {
+	if (process.platform !== 'darwin') {
+		app.quit();
+	}
 });

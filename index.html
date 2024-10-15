@@ -4,18 +4,46 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<link rel="stylesheet" href="./src/renderer/style.css" />
 	</head>
 	<body>
-		<form id="task-form">
-			<input id="task-name" type="text" placeholder="Task name" />
-			<input id="task-description" type="text" placeholder="Task description" />
-			<input id="task-start-date" type="date" />
-			<input id="task-end-date" type="date" />
-			<button type="submit">Create</button>
-		</form>
-		<ul id="task-list">
-			Tasks list:
-		</ul>
+		<div class="create-task-container">
+			<form id="task-form">
+				<div class="form-group">
+					<label for="task-name">Task Name:</label>
+					<input
+						id="task-name"
+						name="task-name"
+						type="text"
+						placeholder="Task name"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="task-desc">Task Description:</label>
+					<textarea
+						id="task-desc"
+						name="task-desc"
+						placeholder="Task description"
+					></textarea>
+				</div>
+				<div class="form-group">
+					<label for="task-start-date">Task Start Date:</label>
+					<input id="task-start-date" name="task-start-date" type="date" />
+				</div>
+				<div class="form-group">
+					<label for="task-end-date">Task End Date:</label>
+					<input id="task-end-date" name="task-end-date" type="date" />
+				</div>
+				<div class="form-group">
+					<button type="submit">Create</button>
+				</div>
+			</form>
+		</div>
+		<div class="task-list-container">
+			<ul id="task-list">
+				Tasks list
+			</ul>
+		</div>
 		<script src="./dist/renderer/index.js"></script>
 	</body>
 </html>

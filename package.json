@@ -2,6 +2,7 @@
 	"name": "time-tracker",
 	"version": "1.0.0",
 	"main": "./dist/main.js",
+	"type": "commonjs",
 	"scripts": {
 		"lint": "eslint 'src/**/*.{js,ts}'",
 		"format": "prettier --write 'src/**/*.{js,ts,json,html}'",

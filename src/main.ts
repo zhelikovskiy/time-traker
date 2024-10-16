@@ -1,8 +1,5 @@
-import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron';
-import Task from './models/Task';
-import { v4 as uuidv4 } from 'uuid';
-
-const taskList: Task[] = [];
+import { app, BrowserWindow } from 'electron';
+import { initIpcHandlers } from './ipc';
 
 const createWindow = () => {
 	const win = new BrowserWindow({
@@ -14,6 +11,9 @@ const createWindow = () => {
 	});
 
 	win.loadFile('./index.html');
+
+	initIpcHandlers();
+
 	win.on('ready-to-show', () => win.show());
 };
 

@@ -1,8 +1,13 @@
 import { ipcRenderer, contextBridge } from 'electron';
-import Task from './models/Task';
 
 declare global {
 	interface Window {
-		ipc: {};
+		ipc: {
+			CreateTask: (task: unknown) => void;
+		};
 	}
 }
+
+contextBridge.exposeInMainWorld('ipc', {
+	CreateTask: (task: unknown) => ipcRenderer.send('create-task', task),
+});

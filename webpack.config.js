@@ -12,6 +12,9 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.ts', '.js', '.vue', '.json'],
+		alias: {
+			vue: 'vue/dist/vue.esm-bundler.js',
+		},
 	},
 	module: {
 		rules: [
@@ -21,8 +24,8 @@ module.exports = {
 			},
 			{
 				test: /\.ts$/,
-				loader: 'ts-loader',
-				options: { appendTsSuffixTo: [/\.vue$/] },
+				use: 'ts-loader',
+				exclude: /node_modules/,
 			},
 		],
 	},

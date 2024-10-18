@@ -1,4 +1,4 @@
-function handleCreateTaskForm(event: Event): void {
+const handleCreateTaskForm = (event: Event): void => {
 	event.preventDefault();
 	const form = document.getElementById('create-task-form') as HTMLFormElement;
 
@@ -16,6 +16,8 @@ function handleCreateTaskForm(event: Event): void {
 	};
 
 	window.ipc.CreateTask(task);
-}
+
+	form.reset();
+};
 
 export default handleCreateTaskForm;

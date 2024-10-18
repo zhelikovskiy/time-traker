@@ -1,6 +1,7 @@
 @import url('./styles/botton.css');
 @import url('./styles/task-container.css');
 @import url('./styles/task-list-container.css');
+@import url('./styles/task-element.css');
 
 * {
 	box-sizing: border-box;

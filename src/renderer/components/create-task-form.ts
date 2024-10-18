@@ -1,20 +1,21 @@
-const CreteTaskFormHanlder = (event: Event) => {
+function handleCreateTaskForm(event: Event): void {
 	event.preventDefault();
+	const form = document.getElementById('create-task-form') as HTMLFormElement;
 
-	const taskName = document.getElementById('task-name') as HTMLInputElement;
+	const task = {
+		name: (form.elements.namedItem('task-name') as HTMLInputElement).value,
 
-	const taskDesc = document.getElementById('task-desc') as HTMLTextAreaElement;
+		description: (form.elements.namedItem('task-desc') as HTMLTextAreaElement)
+			.value,
 
-	const startDate = document.getElementById('start-date') as HTMLInputElement;
+		startDate: (form.elements.namedItem('task-start-date') as HTMLInputElement)
+			.value,
 
-	const endDate = document.getElementById('end-date') as HTMLInputElement;
+		endDate: (form.elements.namedItem('task-end-date') as HTMLInputElement)
+			.value,
+	};
 
-	window.ipc.CreateTask({
-		name: taskName.value,
-		description: taskDesc.value,
-		startDate: startDate.value,
-		endDate: endDate.value,
-	});
-};
+	window.ipc.CreateTask(task);
+}
 
-export default CreteTaskFormHanlder;
+export default handleCreateTaskForm;

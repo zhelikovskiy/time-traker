@@ -1,7 +1,9 @@
 import { ipcMain } from 'electron';
+import taskService from './services/task-service';
 
 export const initIpcHandlers = () => {
-	ipcMain.on('create-task', (event, task) => {
-		console.log(task);
+	ipcMain.handle('create-task', (event, task) => {
+		const response = taskService.create(task);
+		return response;
 	});
 };

@@ -1,5 +1,5 @@
-import CreteTaskFormHanlder from './components/create-task-form';
+import handleCreateTaskForm from './components/create-task-form';
 
 document
 	.getElementById('create-task-form')
-	?.addEventListener('submit', CreteTaskFormHanlder);
+	?.addEventListener('submit', handleCreateTaskForm);

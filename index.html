@@ -3,47 +3,11 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Time Tracker</title>
 		<link rel="stylesheet" href="./src/renderer/style.css" />
 	</head>
 	<body>
-		<div class="create-task-container">
-			<form id="create-task-form">
-				<div class="form-group">
-					<label for="task-name">Task Name:</label>
-					<input
-						id="task-name"
-						name="task-name"
-						type="text"
-						placeholder="Task name"
-					/>
-				</div>
-				<div class="form-group">
-					<label for="task-desc">Task Description:</label>
-					<textarea
-						id="task-desc"
-						name="task-desc"
-						placeholder="Task description"
-					></textarea>
-				</div>
-				<div class="form-group">
-					<label for="task-start-date">Task Start Date:</label>
-					<input id="task-start-date" name="task-start-date" type="date" />
-				</div>
-				<div class="form-group">
-					<label for="task-end-date">Task End Date:</label>
-					<input id="task-end-date" name="task-end-date" type="date" />
-				</div>
-				<div class="form-group">
-					<button type="submit">Create</button>
-				</div>
-			</form>
-		</div>
-		<div class="task-list-container">
-			<ul id="task-list">
-				Tasks list
-			</ul>
-		</div>
+		<div id="app"></div>
 		<script src="./dist/bundle.js"></script>
 	</body>
 </html>

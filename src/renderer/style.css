@@ -1,16 +1,17 @@
-@import url('./styles/botton.css');
-@import url('./styles/task-container.css');
-@import url('./styles/task-list-container.css');
-@import url('./styles/task-element.css');
+@import url('./styles/tabs.css');
+@import url('./styles/button.css');
+@import url('./styles/main-container.css');
 
-* {
-	box-sizing: border-box;
+html,
+body {
+	height: 100%;
 	margin: 0;
-	padding: 0;
 }
 
-body {
+#app {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
 	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	padding: 20px;
 }

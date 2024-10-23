@@ -1,6 +1,8 @@
 @import url('./styles/tabs.css');
 @import url('./styles/button.css');
 @import url('./styles/main-container.css');
+@import url('./styles/task-list.css');
+@import url('./styles/task-list-item.css');
 
 html,
 body {

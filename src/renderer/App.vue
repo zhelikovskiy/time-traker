@@ -16,14 +16,19 @@
 		</div>
 
 		<div class="main-container">
-			<p v-if="currentTab === 'tasks'">Tasks page</p>
+			<TaskList v-if="currentTab === 'tasks'" />
 			<p v-if="currentTab === 'statistics'">Statistics page</p>
 		</div>
 	</div>
 </template>
 
 <script>
+import TaskList from './components/Task-List.vue';
+
 export default {
+	components: {
+		TaskList,
+	},
 	data() {
 		return {
 			currentTab: 'tasks',

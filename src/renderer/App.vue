@@ -1,37 +1,39 @@
 <template>
 	<div id="app-vue">
-		<div class="tabs">
-			<button
-				@click="currentTab = 'tasks'"
-				:class="{ active: currentTab === 'tasks' }"
+		<nav class="tabs">
+			<RouterLink
+				class="tab-btn"
+				to="/"
+				:class="{ active: $route.path === '/' }"
+				>Tasks</RouterLink
 			>
-				Tasks
-			</button>
-			<button
-				@click="currentTab = 'statistics'"
-				:class="{ active: currentTab === 'statistics' }"
+			<RouterLink
+				class="tab-btn"
+				to="/statistics"
+				:class="{ active: $route.path === '/statistics' }"
+				>Statistics</RouterLink
 			>
-				Statistics
-			</button>
-		</div>
+		</nav>
 
 		<div class="main-container">
-			<TaskList v-if="currentTab === 'tasks'" />
-			<p v-if="currentTab === 'statistics'">Statistics page</p>
+			<RouterView />
 		</div>
 	</div>
 </template>
 
 <script>
-import TaskList from './components/Task-List.vue';
+import { useRoute } from 'vue-router';
 
 export default {
-	components: {
-		TaskList,
-	},
-	data() {
+	setup() {
+		const route = useRoute();
+
+		const isActive = (path) => {
+			return route.path === path;
+		};
+
 		return {
-			currentTab: 'tasks',
+			isActive,
 		};
 	},
 };

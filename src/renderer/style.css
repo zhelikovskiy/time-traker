@@ -3,6 +3,7 @@
 @import url('./styles/main-container.css');
 @import url('./styles/task-list.css');
 @import url('./styles/task-list-item.css');
+@import url('./styles/task-info.css');
 
 html,
 body {

@@ -4,7 +4,7 @@
 	border-bottom: 1px solid #c9c7c1;
 }
 
-.tabs button {
+.tabs .tab-btn {
 	background-color: transparent;
 	border: none;
 	padding: 10px 20px;
@@ -14,6 +14,6 @@
 	transition: background-color 0.3s;
 }
 
-.tabs button.active {
+.tabs .active {
 	background-color: #c9c7c1;
 }

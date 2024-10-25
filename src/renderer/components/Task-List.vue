@@ -7,47 +7,30 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 import TaskListItem from './Task-List-Item.vue';
 
 export default {
+	name: 'TaskList',
 	components: {
 		TaskListItem,
 	},
-	data() {
-		return {
-			tasks: [
-				{
-					id: 1,
-					name: 'Task 1',
-					desc: 'This is a description for task 1. It might be very long so we need to truncate it.',
-					status: 'Not Started',
-					isTracking: false,
-					startDate: '2024-10-21',
-					endDate: null,
-					todayTrackingTime: '00:45:00',
-				},
-				{
-					id: 2,
-					name: 'Task 2',
-					desc: 'Another description that is shorter.',
-					status: 'In Progress',
-					isTracking: true,
-					startDate: '2024-10-19',
-					endDate: null,
-					todayTrackingTime: '02:15:00',
-				},
-				{
-					id: 3,
-					name: 'Task 3',
-					desc: 'Completed task with a short description.',
-					status: 'Completed',
-					isTracking: false,
-					startDate: '2024-10-15',
-					endDate: '2024-10-20',
-					todayTrackingTime: '00:00:00',
-				},
-			],
+	setup() {
+		const tasks = ref([]);
+
+		const fetchTasks = async () => {
+			try {
+				tasks.value = await window.ipc.getTasks();
+			} catch (error) {
+				console.error('Error fetching tasks:', error);
+			}
 		};
+
+		onMounted(() => {
+			fetchTasks();
+		});
+
+		return { tasks };
 	},
 };
 </script>

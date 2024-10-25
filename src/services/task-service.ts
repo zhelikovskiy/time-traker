@@ -2,7 +2,35 @@ import { CreateTaskDto } from '../dto/create-task-dto';
 import Task from '../models/Task';
 import { v4 as uuidv4 } from 'uuid';
 
-const tasks: Task[] = [];
+const tasks: Task[] = [
+	{
+		id: uuidv4(),
+		name: 'Meet with John',
+		description: 'Discuss new project with John',
+		status: 'todo',
+		startDate: new Date('2022-11-01T14:00:00'),
+		endDate: undefined,
+		createdAt: new Date('2022-11-01T12:00:00'),
+	},
+	{
+		id: uuidv4(),
+		name: 'Write an article',
+		description: 'Write an article about TypeScript',
+		status: 'doing',
+		startDate: new Date('2022-11-02T10:00:00'),
+		endDate: undefined,
+		createdAt: new Date('2022-11-02T09:00:00'),
+	},
+	{
+		id: uuidv4(),
+		name: 'Buy milk',
+		description: 'Buy milk and eggs',
+		status: 'done',
+		startDate: new Date('2022-11-03T12:00:00'),
+		endDate: new Date('2022-11-03T13:00:00'),
+		createdAt: new Date('2022-11-03T11:00:00'),
+	},
+];
 
 const create = (task: CreateTaskDto) => {
 	const dateNow = new Date();
@@ -22,6 +50,11 @@ const create = (task: CreateTaskDto) => {
 	return newTask;
 };
 
+const getMany = () => {
+	return tasks;
+};
+
 export default {
 	create,
+	getMany,
 };

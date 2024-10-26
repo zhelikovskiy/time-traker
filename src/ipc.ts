@@ -7,4 +7,10 @@ export const initIpcHandlers = () => {
 
 		return response;
 	});
+
+	ipcMain.handle('get-task-info', async (event, id: string) => {
+		const response = taskService.getOneById(id);
+
+		return response;
+	});
 };

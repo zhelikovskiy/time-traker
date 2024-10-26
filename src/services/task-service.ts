@@ -54,7 +54,12 @@ const getMany = () => {
 	return tasks;
 };
 
+const getOneById = (id: string) => {
+	return tasks.find((task) => task.id === id);
+};
+
 export default {
 	create,
 	getMany,
+	getOneById,
 };

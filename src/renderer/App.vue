@@ -3,8 +3,8 @@
 		<nav class="tabs">
 			<RouterLink
 				class="tab-btn"
-				to="/tasks"
-				:class="{ active: $route.path === '/tasks' }"
+				to="/task-list"
+				:class="{ active: $route.path === '/task-list' }"
 				>Tasks</RouterLink
 			>
 			<RouterLink

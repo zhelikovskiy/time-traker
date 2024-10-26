@@ -5,7 +5,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
 	{
-		path: '/tasks',
+		path: '/task-list',
 		name: 'TaskList',
 		component: TaskList,
 	},
@@ -15,13 +15,13 @@ const routes = [
 		component: Statistics,
 	},
 	{
-		path: '/task/:id',
+		path: '/task-info/:id',
 		component: TaskInfo,
 		name: 'TaskInfo',
 	},
 	{
 		path: '/',
-		redirect: '/tasks',
+		redirect: '/task-list',
 	},
 ];
 

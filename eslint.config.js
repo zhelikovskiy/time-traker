@@ -1,10 +1,13 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-require-imports */
 // @ts-check
-
 const eslint = require('@eslint/js');
+
 const tseslint = require('typescript-eslint');
+
 const prettier = require('eslint-plugin-prettier');
 
-export default tseslint.config(
+module.exports = tseslint.config(
 	eslint.configs.recommended,
 	...tseslint.configs.recommended,
 	{

@@ -1,3 +1,4 @@
+import { UpdateTaskDto } from '../dto/update-task-dto';
 import { CreateTaskDto } from '../dto/create-task-dto';
 import Task from '../models/Task';
 import { v4 as uuidv4 } from 'uuid';
@@ -58,8 +59,19 @@ const getOneById = (id: string) => {
 	return tasks.find((task) => task.id === id);
 };
 
+const update = (id: string, updatedData: UpdateTaskDto) => {
+	const task = tasks.find((task) => task.id === id);
+
+	if (task) {
+		Object.assign(task, updatedData);
+	}
+
+	return task;
+};
+
 export default {
 	create,
 	getMany,
 	getOneById,
+	update,
 };

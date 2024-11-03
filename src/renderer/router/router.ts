@@ -18,6 +18,7 @@ const routes = [
 		path: '/task-info/:id',
 		component: TaskInfo,
 		name: 'TaskInfo',
+		props: true,
 	},
 	{
 		path: '/',

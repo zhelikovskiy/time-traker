@@ -4,7 +4,9 @@
 			<h3>{{ task.name }}</h3>
 		</div>
 		<div>
-			<RouterLink to="/task-info/{{ task.id }}">More {{ task.id }}</RouterLink>
+			<RouterLink :to="{ name: 'TaskInfo', params: { id: task.id } }"
+				>More {{ task.id }}</RouterLink
+			>
 		</div>
 	</li>
 </template>

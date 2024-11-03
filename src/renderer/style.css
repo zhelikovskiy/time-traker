@@ -4,6 +4,7 @@
 @import url('./styles/task-list.css');
 @import url('./styles/task-list-item.css');
 @import url('./styles/task-info.css');
+@import url('./styles/modal-window.css');
 
 html,
 body {

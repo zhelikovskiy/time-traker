@@ -1,6 +1,6 @@
-import TaskList from '../components/Task-List.vue';
+import TaskList from '../components/task-list/Task-List.vue';
 import Statistics from '../components/Statistics.vue';
-import TaskInfo from '../components/Task-Info.vue';
+import TaskInfo from '../components/task/Task-Info.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [

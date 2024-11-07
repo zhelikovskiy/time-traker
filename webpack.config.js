@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-require-imports */
 const path = require('path');
+
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {

@@ -41,7 +41,8 @@ const create = (task: CreateTaskDto) => {
 		name: task.name,
 		description: task.description,
 		status: 'todo',
-		startDate: task.startDate ? task.startDate : dateNow,
+		startDate:
+			task.startDate && task.startDate >= dateNow ? task.startDate : dateNow,
 		endDate: task.endDate,
 		createdAt: dateNow,
 	};

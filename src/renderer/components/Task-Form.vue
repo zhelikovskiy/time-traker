@@ -46,6 +46,16 @@
 <script setup>
 import { ref, defineProps, onMounted } from 'vue';
 
+const clearForm = () => {
+	task.value = {
+		name: '',
+		description: '',
+		status: 'todo',
+		startDate: new Date().toISOString().slice(0, 16),
+		endDate: null,
+	};
+};
+
 const props = defineProps({
 	id: {
 		type: String,
@@ -92,6 +102,8 @@ const submit = async () => {
 			};
 
 			await window.ipc.createTask(taskData);
+
+			clearForm();
 		}
 	} catch (error) {
 		console.error('Error saving task:', error);

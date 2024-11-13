@@ -38,4 +38,11 @@ export const initIpcHandlers = () => {
 			return response;
 		}
 	);
+
+	ipcMain.handle(
+		'delete-task',
+		async (event: IpcMainInvokeEvent, id: string) => {
+			taskService.deleteOne(id);
+		}
+	);
 };

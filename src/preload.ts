@@ -11,6 +11,7 @@ declare global {
 			getTaskInfo: (id: string) => GetTaskInfoDto;
 			createTask: (task: CreateTaskDto) => void;
 			updateTask: (id: string, updatedData: UpdateTaskDto) => GetTaskInfoDto;
+			deleteTask: (id: string) => void;
 		};
 	}
 }
@@ -21,4 +22,5 @@ contextBridge.exposeInMainWorld('ipc', {
 	createTask: (task: CreateTaskDto) => ipcRenderer.invoke('create-task', task),
 	updateTask: (id: string, updatedData: UpdateTaskDto) =>
 		ipcRenderer.invoke('update-task', id, updatedData),
+	deleteTask: (id: string) => ipcRenderer.invoke('delete-task', id),
 });

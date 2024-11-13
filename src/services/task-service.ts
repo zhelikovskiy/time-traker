@@ -65,9 +65,19 @@ const update = (id: string, updatedData: UpdateTaskDto) => {
 
 	if (task) {
 		Object.assign(task, updatedData);
+		task.startDate = new Date(task.startDate);
+		task.endDate = task.endDate ? new Date(task.endDate) : undefined;
 	}
 
 	return task;
+};
+
+const deleteOne = (id: string) => {
+	const index = tasks.findIndex((task) => task.id === id);
+
+	if (index !== -1) {
+		tasks.splice(index, 1);
+	}
 };
 
 export default {
@@ -75,4 +85,5 @@ export default {
 	getMany,
 	getOneById,
 	update,
+	deleteOne,
 };

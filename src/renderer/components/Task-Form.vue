@@ -16,10 +16,10 @@
 			<div>
 				<label for="startDate">Start Date:</label>
 				<input
-					type="datetime-local"
+					type="date"
 					id="startDate"
 					v-model="task.startDate"
-					:min="new Date().toISOString().slice(0, 16)"
+					:min="new Date().toISOString().slice(0, 10)"
 					required
 				/>
 			</div>
@@ -51,7 +51,7 @@ const clearForm = () => {
 		name: '',
 		description: '',
 		status: 'todo',
-		startDate: new Date().toISOString().slice(0, 16),
+		startDate: new Date().toISOString().slice(0, 10),
 		endDate: null,
 	};
 };
@@ -77,9 +77,13 @@ onMounted(async () => {
 			const response = await window.ipc.getTaskInfo(props.id);
 
 			task.value = response;
-			if (response.endDate) task.value.endDate = toOnlyDate(response.endDate);
+
+			task.value.startDate = response.startDate.toISOString().slice(0, 10);
+
+			if (response.endDate)
+				task.value.endDate = response.endDate.toISOString().slice(0, 10);
 		} else {
-			task.value.startDate = new Date().toISOString().slice(0, 16);
+			task.value.startDate = new Date().toISOString().slice(0, 10);
 		}
 	} catch (error) {
 		console.error('Error fetching task:', error);
@@ -89,7 +93,15 @@ onMounted(async () => {
 const submit = async () => {
 	try {
 		if (props.id) {
-			console.log(task.value);
+			const taskData = {
+				name: task.value.name,
+				description: task.value.description,
+				status: task.value.status,
+				startDate: task.value.startDate,
+				endDate: task.value.endDate ? task.value.endDate : null,
+			};
+
+			await window.ipc.updateTask(props.id, taskData);
 		} else {
 			const taskData = {
 				name: task.value.name,

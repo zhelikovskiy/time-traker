@@ -1,3 +1,5 @@
+import Interval from './Interval';
+
 interface Task {
 	id: string;
 	name: string;
@@ -5,6 +7,7 @@ interface Task {
 	status: 'todo' | 'doing' | 'done';
 	startDate: Date;
 	endDate?: Date;
+	intervals: Interval[];
 	createdAt: Date;
 }
 

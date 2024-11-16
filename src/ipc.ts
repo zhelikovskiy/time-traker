@@ -2,6 +2,7 @@ import { ipcMain, IpcMainInvokeEvent } from 'electron';
 import taskService from './services/task-service';
 import { UpdateTaskDto } from './dto/update-task-dto';
 import { CreateTaskDto } from './dto/create-task-dto';
+import { SaveTimeIntervalDto } from './dto/save-time-interval-dto';
 
 export const initIpcHandlers = () => {
 	ipcMain.handle('get-tasks', async () => {
@@ -43,6 +44,13 @@ export const initIpcHandlers = () => {
 		'delete-task',
 		async (event: IpcMainInvokeEvent, id: string) => {
 			taskService.deleteOne(id);
+		}
+	);
+
+	ipcMain.handle(
+		'save-time',
+		async (event: IpcMainInvokeEvent, intervalData: SaveTimeIntervalDto) => {
+			taskService.saveTime(intervalData);
 		}
 	);
 };

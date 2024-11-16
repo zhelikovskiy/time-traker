@@ -2,6 +2,8 @@ import { UpdateTaskDto } from '../dto/update-task-dto';
 import { CreateTaskDto } from '../dto/create-task-dto';
 import Task from '../models/Task';
 import { v4 as uuidv4 } from 'uuid';
+import { SaveTimeIntervalDto } from '../dto/save-time-interval-dto';
+import Interval from '../models/Interval';
 
 const tasks: Task[] = [
 	{
@@ -12,6 +14,7 @@ const tasks: Task[] = [
 		startDate: new Date('2022-11-01T14:00:00'),
 		endDate: undefined,
 		createdAt: new Date('2022-11-01T12:00:00'),
+		intervals: [],
 	},
 	{
 		id: uuidv4(),
@@ -21,6 +24,7 @@ const tasks: Task[] = [
 		startDate: new Date('2022-11-02T10:00:00'),
 		endDate: undefined,
 		createdAt: new Date('2022-11-02T09:00:00'),
+		intervals: [],
 	},
 	{
 		id: uuidv4(),
@@ -30,6 +34,7 @@ const tasks: Task[] = [
 		startDate: new Date('2022-11-03T12:00:00'),
 		endDate: new Date('2022-11-03T13:00:00'),
 		createdAt: new Date('2022-11-03T11:00:00'),
+		intervals: [],
 	},
 ];
 
@@ -45,6 +50,7 @@ const create = (task: CreateTaskDto) => {
 			task.startDate && task.startDate >= dateNow ? task.startDate : dateNow,
 		endDate: task.endDate,
 		createdAt: dateNow,
+		intervals: [],
 	};
 
 	tasks.push(newTask);
@@ -80,10 +86,29 @@ const deleteOne = (id: string) => {
 	}
 };
 
+const saveTime = (intervalData: SaveTimeIntervalDto) => {
+	const interval: Interval = {
+		id: uuidv4(),
+		startTime: intervalData.startTime,
+		endTime: intervalData.endTime,
+		taskId: intervalData.taskId,
+		timeInSeconds: Math.round(
+			(intervalData.endTime.getTime() - intervalData.startTime.getTime()) / 1000
+		),
+	};
+
+	const task = tasks.find((task) => task.id === intervalData.taskId);
+
+	if (task) {
+		task.intervals.push(interval);
+	}
+};
+
 export default {
 	create,
 	getMany,
 	getOneById,
 	update,
 	deleteOne,
+	saveTime,
 };

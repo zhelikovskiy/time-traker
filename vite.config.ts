@@ -7,4 +7,8 @@ export default defineConfig({
 	build: {
 		outDir: 'dist-vue',
 	},
+	server: {
+		port: 5123,
+		strictPort: true,
+	},
 });

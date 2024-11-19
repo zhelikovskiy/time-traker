@@ -1,18 +1,19 @@
 <template>
 	<div class="home">
-		<p>Home page</p>
+		<p>{{ title }}</p>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
 	name: 'HomeView',
+
 	setup() {
-		onMounted(() => {
-			window.electron.getTasks();
-		});
+		const title = ref(window.electron.getTasks());
+
+		return { title };
 	},
 });
 </script>

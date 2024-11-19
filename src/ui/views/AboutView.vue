@@ -1,14 +1,10 @@
 <template>
-	<Header />
-	<RouterView />
+	<div>About</div>
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Header from './components/Header.vue';
 
 export default defineComponent({
-	name: 'App',
-	components: { Header },
+	name: 'about',
 });
 </script>

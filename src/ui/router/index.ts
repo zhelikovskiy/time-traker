@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
 
 export default createRouter({
 	history: createWebHashHistory(),
@@ -7,7 +6,27 @@ export default createRouter({
 		{
 			path: '/',
 			name: 'home',
-			component: HomeView,
+			component: () => import('../views/HomeView.vue'),
+		},
+		{
+			path: '/about',
+			name: 'about',
+			component: () => import('../views/AboutView.vue'),
+		},
+		{
+			path: '/task',
+			name: 'task',
+			component: () => import('../views/Task/TaskView.vue'),
+		},
+		{
+			path: '/task/create',
+			name: 'create-task',
+			component: () => import('../views/Task/CreateTaskView.vue'),
+		},
+		{
+			path: '/task/list',
+			name: 'task-list',
+			component: () => import('../views/Task/TaskListView.vue'),
 		},
 	],
 });

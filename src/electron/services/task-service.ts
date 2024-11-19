@@ -1,7 +1,22 @@
-import store from '../store.js';
+import { v4 as uuidv4 } from 'uuid';
 
-const createOne = (task: any) => {
-	console.log('Create task method');
+const tasks: any[] = [];
+
+const createOne = (data: CreateTaskData) => {
+	const task: Task = {
+		id: uuidv4(),
+		title: data.name,
+		description: data.description ? data.description : '',
+		status: 'todo',
+		timeIntervals: [],
+		totalTrackedTime: 0,
+	};
+
+	tasks.push(task);
+
+	return task;
 };
 
-export default { createOne };
+const getAll = () => tasks;
+
+export default { createOne, getAll };

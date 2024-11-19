@@ -1,8 +1,8 @@
-interface Task {
-	id: number;
+export default interface Task {
+	id: string;
 	title: string;
 	description: string;
 	status: 'todo' | 'in-progress' | 'done';
-	timeIntervals: [{ start: string; end: string }];
+	timeIntervals: { start: string; end: string }[];
 	totalTrackedTime: number;
 }

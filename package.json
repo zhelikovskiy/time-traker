@@ -14,13 +14,14 @@
 		"dist:win": "npm run transpile:electron && npm run build && electron-builder --win --x64"
 	},
 	"dependencies": {
-		"electron-store": "^10.0.0",
+		"nedb": "^1.8.0",
 		"pinia": "^2.2.6",
 		"uuid": "^11.0.3",
 		"vue": "^3.5.12",
 		"vue-router": "^4.4.5"
 	},
 	"devDependencies": {
+		"@types/nedb": "^1.8.16",
 		"@vitejs/plugin-vue": "^5.1.4",
 		"cross-env": "^7.0.3",
 		"electron": "^33.2.0",

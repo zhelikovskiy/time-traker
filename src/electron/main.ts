@@ -19,13 +19,11 @@ app.on('ready', () => {
 
 ipcMain.handle(
 	'create-task',
-	(event: IpcMainInvokeEvent, data: CreateTaskData): Task => {
-		const response = taskService.createOne(data);
-		return response;
+	(event: IpcMainInvokeEvent, data: CreateTaskData): Promise<Task> => {
+		return taskService.createOne(data);
 	}
 );
 
-ipcMain.handle('get-tasks', (): Task[] => {
-	const response = taskService.getAll();
-	return response;
+ipcMain.handle('get-tasks', (): Promise<Task[]> => {
+	return taskService.getAll();
 });

@@ -1,9 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
+import db from './db-service.js';
 
-const tasks: any[] = [];
+type DbError = Error | null;
 
-const createOne = (data: CreateTaskData) => {
-	const task: Task = {
+const createOne = async (data: CreateTaskData) => {
+	const newTask: Task = {
 		id: uuidv4(),
 		title: data.name,
 		description: data.description ? data.description : '',
@@ -12,11 +13,13 @@ const createOne = (data: CreateTaskData) => {
 		totalTrackedTime: 0,
 	};
 
-	tasks.push(task);
+	const task = await db.create(newTask);
 
 	return task;
 };
 
-const getAll = () => tasks;
+const getAll = async () => {
+	return await db.getAll();
+};
 
 export default { createOne, getAll };

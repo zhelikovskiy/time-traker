@@ -4,9 +4,10 @@
 		<p v-if="task.description" class="task-description">
 			{{ task.description }}
 		</p>
-		<span class="task-status" :class="`status-${task.status.toLowerCase()}`"
-			>={{ task.status }}</span
-		>
+		<span class="task-status" :class="`status-${task.status.toLowerCase()}`">{{
+			task.status
+		}}</span>
+		<button class="delete-button" @click="onDelete(task.id)">Delete</button>
 	</li>
 </template>
 
@@ -20,41 +21,51 @@ export default defineComponent({
 			type: Object as PropType<Task>,
 			required: true,
 		},
+		onDelete: {
+			type: Function,
+			required: true,
+		},
 	},
-	setup() {},
+	setup(props) {
+		const onDelete = async (id: string) => {
+			await props.onDelete(id);
+		};
+
+		return { onDelete };
+	},
 });
 </script>
 
 <style scoped>
 .task-item {
-	font-family: sans-serif;
-	padding: 15px;
-	margin-bottom: 10px;
-	border: 1px solid #eee;
-	border-radius: 5px;
+	display: flex;
+	align-items: center; /*  Выравнивание элементов по вертикали */
+	justify-content: space-between; /* Распределяем элементы по ширине */
+	padding: 10px;
+	margin-bottom: 8px; /* Отступ между элементами списка */
+	border: 1px solid #eee; /*  Рамка */
+	border-radius: 5px; /*  Скругленные углы */
+	background-color: white; /* Фон */
 	box-sizing: border-box;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	position: relative; /* Для позиционирования кнопки "More" */
 }
 
-.task-name {
-	margin-top: 0; /* Убираем верхний отступ у заголовка */
+.task-title {
+	margin: 0; /* Убираем отступ у заголовка */
+	flex-grow: 1; /* Заголовок занимает доступное пространство */
 }
 
-.task-dates {
-	font-size: 0.9em;
-	color: #777; /* Более светлый цвет для дат */
-	margin-bottom: 5px;
+.task-description {
+	margin: 5px 0; /*  Отступы сверху и снизу */
+	padding: 0 10px 0 10px;
 }
 
 .task-status {
 	font-weight: bold;
-	margin-right: 10px; /* Отступ справа от статуса */
-	padding: 3px 6px; /* Отступы внутри span */
+	padding: 3px 6px;
 	border-radius: 3px;
+	white-space: nowrap; /*  Текст статуса не переносится */
 }
 
-/* Стили для разных статусов */
 .status-todo {
 	background-color: #f0ad4e;
 	color: white;
@@ -68,24 +79,13 @@ export default defineComponent({
 	color: white;
 }
 
-.task-item button {
-	background-color: #4caf50;
+.delete-button {
+	background-color: #dc3545; /* Красный цвет */
 	color: white;
 	padding: 8px 12px;
 	border: none;
-	border-radius: 3px;
+	border-radius: 4px;
 	cursor: pointer;
-	margin-right: 5px;
-}
-
-/* Позиционирование кнопки More */
-.task-item button:last-of-type {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
-
-.more-details {
-	margin-top: 10px; /* Отступ сверху для дополнительных деталей */
+	margin-left: 10px;
 }
 </style>

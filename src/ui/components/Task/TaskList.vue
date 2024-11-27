@@ -1,6 +1,11 @@
 <template>
 	<ul class="task-list">
-		<TaskListItem v-for="task in tasks" :key="task.id" :task="task" />
+		<TaskListItem
+			v-for="task in tasks"
+			:key="task.id"
+			:task="task"
+			:onDelete="onDelete"
+		/>
 	</ul>
 </template>
 
@@ -16,6 +21,10 @@ export default defineComponent({
 			type: Array<Task>,
 			required: true,
 		},
+		onDelete: {
+			type: Function,
+			required: true,
+		},
 	},
 	setup() {},
 });
@@ -23,17 +32,9 @@ export default defineComponent({
 
 <style scoped>
 .task-list {
-	width: calc(
-		100% - 40px
-	); /*  Ширина почти на всё окно, с отступами по 20px слева и справа */
+	width: 100%; /* Список занимает всю ширину */
+	margin: 10px 0; /*  Отступы сверху и снизу */
 	padding: 0; /*  Убираем отступы по умолчанию у ul */
-	margin: 20px; /*  Внешние отступы */
-	border-radius: 8px; /*  Закругленные углы */
-	list-style: none; /*  Убираем маркеры списка */
-}
-
-.task-list li {
-	/*  Стили для элементов списка (TaskListItem) */
-	margin-bottom: 5px; /*  Небольшой отступ между элементами */
+	list-style: none; /* Убираем маркеры списка */
 }
 </style>

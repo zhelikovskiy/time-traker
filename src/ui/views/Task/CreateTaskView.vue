@@ -1,5 +1,5 @@
 <template>
-	<div class="create-task-view">
+	<div id="create-task-view">
 		<TaskForm @submit="onSubmit" />
 	</div>
 </template>
@@ -27,12 +27,8 @@ export default defineComponent({
 					endDate: data.endDate ? new Date(data.endDate) : undefined,
 				};
 
-				try {
-					await taskStore.createTask(newTask);
-					router.push({ name: 'tasks' });
-				} catch (error) {
-					alert(error);
-				}
+				await taskStore.createTask(newTask);
+				router.push({ name: 'tasks' });
 			}
 		};
 
@@ -42,3 +38,12 @@ export default defineComponent({
 	},
 });
 </script>
+
+<style scoped>
+#create-task-view {
+	display: flex;
+	justify-content: center; /* Центрируем форму по горизонтали */
+	align-items: center; /* Центрируем форму по вертикали */
+	flex-grow: 1; /*  Занимаем всё доступное пространство */
+}
+</style>

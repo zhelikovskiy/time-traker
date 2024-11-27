@@ -1,11 +1,4 @@
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
-	color-scheme: light dark; /* Сохраняем поддержку темной темы */
-	background-color: #242424; /* Темный фон */
-	color: rgba(255, 255, 255, 0.87); /* Светлый цвет текста */
-
 	/* Улучшение рендеринга текста */
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -14,16 +7,30 @@
 }
 
 body {
-	margin: 0;
+	font-family: sans-serif; /*  Базовый шрифт */
+	line-height: 1.6; /*  Межстрочный интервал */
+	margin: 0; /*  Убираем стандартные отступы */
+	display: flex;
+	flex-direction: column; /*  Размещаем элементы вертикально */
 	min-height: 100vh; /*  Занимаем всю высоту экрана */
-	display: flex; /*  Flexbox для центрирования */
-	flex-direction: column; /*  Выравнивание по вертикали */
+	background-color: #f4f4f4; /* Светло-серый фон */
+	color: #333; /*  Темно-серый текст */
 }
 
 #app {
-	flex-grow: 1; /* #app занимает все доступное пространство */
-	display: flex; /* Flexbox для центрирования контента */
-	justify-content: center; /* Центрирование по горизонтали */
-	align-items: center; /* Центрирование по вертикали */
-	padding: 2rem; /* Отступы вокруг приложения */
+	display: flex;
+	flex-direction: column; /*  Header и main-container размещаются вертикально */
+	flex-grow: 1; /*  App занимает все доступное пространство */
+	box-sizing: border-box; /*  Учитываем padding и border в размерах */
+}
+
+#main-container {
+	flex-grow: 1; /* main-container занимает всё оставшееся пространство */
+	padding: 20px;
+}
+
+/*  Пример стилей для RouterView.  Вы можете изменить их позже, когда определитесь с компонентами */
+#main-container > * {
+	/*  Применяем стили к первому дочернему элементу .main-container (RouterView) */
+	width: 100%;
 }

@@ -1,6 +1,6 @@
 <template>
-	<div class="tasks-view">
-		<TaskList :tasks="taskStore.tasks" />
+	<div id="tasks-view">
+		<TaskList :tasks="taskStore.tasks" :onDelete="onDelete" />
 	</div>
 </template>
 
@@ -19,14 +19,20 @@ export default defineComponent({
 			await taskStore.fetchTasks();
 		});
 
-		return { taskStore };
+		const onDelete = async (id: string) => {
+			await taskStore.deleteTask(id);
+		};
+
+		return { taskStore, onDelete };
 	},
 });
 </script>
 
 <style scoped>
-.tasks-view {
-	padding: 20px;
-	box-sizing: border-box;
+#tasks-view {
+	display: flex; /* Используем flexbox */
+	flex-direction: column; /*  Вертикальное расположение элементов */
+	flex-grow: 1; /* tasks-view занимает все доступное пространство */
+	padding: 10px; /*  Отступы */
 }
 </style>

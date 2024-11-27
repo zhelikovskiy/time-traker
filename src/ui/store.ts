@@ -24,5 +24,14 @@ export const useTaskStore = defineStore('tasks', {
 				console.error('Error creating task:', error);
 			}
 		},
+
+		async deleteTask(id: string) {
+			try {
+				await window.electron.deleteTask(id);
+				this.tasks = this.tasks.filter((task) => task.id !== id);
+			} catch (error) {
+				console.error('Error deleting task:', error);
+			}
+		},
 	},
 });

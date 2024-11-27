@@ -25,13 +25,9 @@ export default {
 <style scoped>
 /* Стили для самого хедера */
 header {
-	background-color: #333;
-	padding: 10px 0;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 10; /* Чтобы navbar был поверх других элементов */
+	background-color: #fff; /*  Белый фон header */
+	padding: 10px 20px; /*  Отступы */
+	border-bottom: 1px solid #eee;
 }
 
 nav ul {
@@ -47,7 +43,7 @@ nav li {
 }
 
 nav a {
-	color: white;
+	color: #333;
 	text-decoration: none;
 	font-size: 16px;
 }

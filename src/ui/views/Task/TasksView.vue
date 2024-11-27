@@ -1,17 +1,17 @@
 <template>
-	<ul>
-		<li v-for="task in taskStore.tasks" :key="task.id">
-			{{ task.title }}
-		</li>
-	</ul>
+	<div class="tasks-view">
+		<TaskList :tasks="taskStore.tasks" />
+	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
 import { useTaskStore } from '../../store';
+import TaskList from '../../components/Task/TaskList.vue';
 
 export default defineComponent({
-	name: 'task-list',
+	name: 'TasksView',
+	components: { TaskList },
 	setup() {
 		const taskStore = useTaskStore();
 
@@ -23,3 +23,10 @@ export default defineComponent({
 	},
 });
 </script>
+
+<style scoped>
+.tasks-view {
+	padding: 20px;
+	box-sizing: border-box;
+}
+</style>

@@ -14,8 +14,10 @@ interface Task {
 	totalTrackedTime: number;
 }
 
+type TaskStatus = 'TODO' | 'DOING' | 'DONE';
+
 type CreateTaskData = {
-	name: string;
+	title: string;
 	description?: string;
 	startDate: Date;
 	endDate?: Date;

@@ -1,26 +1,22 @@
 <template>
-	<div>
+	<div class="task-form">
 		<form @submit.prevent="onSubmit">
-			<label
-				>Название:
-				<input type="text" v-model="form.name" />
-			</label>
+			<label for="name">Название:</label>
+			<input type="text" id="name" v-model="form.name" required />
 			<br />
-			<label
-				>Описание:
-				<textarea v-model="form.description"></textarea>
-			</label>
+
+			<label for="description">Описание:</label>
+			<textarea id="description" v-model="form.description"></textarea>
 			<br />
-			<label
-				>Дата начала:
-				<input type="date" v-model="form.startDate" />
-			</label>
+
+			<label for="startDate">Дата начала:</label>
+			<input type="date" id="startDate" v-model="form.startDate" />
 			<br />
-			<label
-				>Дата конца:
-				<input type="date" v-model="form.endDate" />
-			</label>
+
+			<label for="endDate">Дата конца:</label>
+			<input type="date" id="endDate" v-model="form.endDate" />
 			<br />
+
 			<button type="submit">Создать</button>
 		</form>
 	</div>
@@ -32,7 +28,7 @@ import { useTaskStore } from '../../store';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
-	name: 'create-task',
+	name: 'AddTaskView',
 	setup() {
 		const taskStore = useTaskStore();
 		const router = useRouter();
@@ -46,7 +42,7 @@ export default defineComponent({
 
 		const onSubmit = async () => {
 			const newTask: CreateTaskData = {
-				name: form.value.name,
+				title: form.value.name,
 				description: form.value.description,
 				startDate: new Date(form.value.startDate),
 				endDate: form.value.endDate ? new Date(form.value.endDate) : undefined,
@@ -65,14 +61,40 @@ export default defineComponent({
 </script>
 
 <style scoped>
-label {
-	display: block;
-	margin: 1em 0;
+.task-form {
+	font-family: sans-serif; /*  Базовый шрифт */
+	padding: 20px;
+	border: 1px solid #eee; /* Легкая рамка */
+	border-radius: 5px; /* Скругленные углы */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень */
 }
 
-input,
-textarea {
-	display: block;
-	margin: 0.5em 0;
+.task-form label {
+	display: block; /* Занимать всю ширину */
+	margin-bottom: 5px; /* Отступ снизу */
+	font-weight: bold; /* Жирный текст */
+}
+
+.task-form input,
+.task-form textarea {
+	width: calc(100% - 22px); /*  Занимать всю ширину с учетом padding */
+	padding: 8px; /* Внутренние отступы */
+	border: 1px solid #ccc; /* Рамка */
+	border-radius: 3px; /* Скругленные углы */
+	box-sizing: border-box; /*  Учитывать padding и border в ширине */
+	margin-bottom: 10px;
+}
+
+.task-form button {
+	background-color: #4caf50; /* Зеленый цвет */
+	color: white; /* Белый текст */
+	padding: 10px 15px; /* Отступы */
+	border: none; /* Без рамки */
+	border-radius: 3px; /* Скругленные углы */
+	cursor: pointer; /* Курсор-указатель */
+}
+
+.task-form button:hover {
+	background-color: #45a049; /*  Более темный зеленый при наведении */
 }
 </style>

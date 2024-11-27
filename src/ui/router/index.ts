@@ -25,8 +25,8 @@ export default createRouter({
 		},
 		{
 			path: '/task/list',
-			name: 'task-list',
-			component: () => import('../views/Task/TaskListView.vue'),
+			name: 'tasks',
+			component: () => import('../views/Task/TasksView.vue'),
 		},
 	],
 });

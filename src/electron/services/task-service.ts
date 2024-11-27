@@ -1,12 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import db from './db-service.js';
 
-type DbError = Error | null;
-
 const createOne = async (data: CreateTaskData) => {
 	const newTask: Task = {
 		id: uuidv4(),
-		title: data.name,
+		title: data.title,
 		description: data.description ? data.description : '',
 		status: 'todo',
 		timeIntervals: [],

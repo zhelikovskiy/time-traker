@@ -7,7 +7,7 @@
 					<router-link :to="{ name: 'create-task' }">New task</router-link>
 				</li>
 				<li>
-					<router-link :to="{ name: 'task-list' }">Task List</router-link>
+					<router-link :to="{ name: 'tasks' }">Task List</router-link>
 				</li>
 				<li><router-link :to="{ name: 'task' }">Task</router-link></li>
 				<li><router-link :to="{ name: 'about' }">About</router-link></li>

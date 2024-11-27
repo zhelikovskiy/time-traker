@@ -2,6 +2,7 @@ interface Window {
 	electron: {
 		getTasks: () => Promise<Task[]>;
 		createTask: (data: CreateTaskData) => Promise<Task>;
+		deleteTask: (id: string) => Promise<void>;
 	};
 }
 

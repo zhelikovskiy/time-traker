@@ -27,3 +27,7 @@ ipcMain.handle(
 ipcMain.handle('get-tasks', (): Promise<Task[]> => {
 	return taskService.getAll();
 });
+
+ipcMain.handle('delete-task', (event: IpcMainInvokeEvent, id: string) => {
+	return taskService.deleteOne(id);
+});

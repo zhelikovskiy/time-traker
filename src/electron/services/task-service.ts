@@ -20,4 +20,8 @@ const getAll = async () => {
 	return await db.getAll();
 };
 
-export default { createOne, getAll };
+const deleteOne = async (id: string) => {
+	return await db.delete(id);
+};
+
+export default { createOne, getAll, deleteOne };

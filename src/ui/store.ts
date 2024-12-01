@@ -6,7 +6,12 @@ export const useTaskStore = defineStore('tasks', {
 			tasks: [] as Task[],
 		};
 	},
-	getters: {},
+	getters: {
+		getTaskById: (state) => {
+			return (id: string) =>
+				state.tasks.find((task) => task.id === id) || undefined;
+		},
+	},
 	actions: {
 		async fetchTasks() {
 			try {
@@ -22,6 +27,16 @@ export const useTaskStore = defineStore('tasks', {
 				this.tasks.push(resp);
 			} catch (error) {
 				console.error('Error creating task:', error);
+			}
+		},
+
+		async updateTask(id: string, data: UpdateTaskData) {
+			try {
+				const resp = await window.electron.updateTask(id, data);
+				console.log('Update response:', resp);
+				//this.tasks = this.tasks.map((task) => (task.id == id ? resp : task));
+			} catch (error) {
+				console.error('Error updating task:', error);
 			}
 		},
 

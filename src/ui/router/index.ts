@@ -24,6 +24,12 @@ export default createRouter({
 			component: () => import('../views/Task/CreateTaskView.vue'),
 		},
 		{
+			path: '/task/update/:id',
+			name: 'update-task',
+			component: () => import('../views/Task/UpdateTaskView.vue'),
+			props: true,
+		},
+		{
 			path: '/task/list',
 			name: 'tasks',
 			component: () => import('../views/Task/TasksView.vue'),

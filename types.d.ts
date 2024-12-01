@@ -2,24 +2,41 @@ interface Window {
 	electron: {
 		getTasks: () => Promise<Task[]>;
 		createTask: (data: CreateTaskData) => Promise<Task>;
+		updateTask: (id: string, data: UpdateTaskData) => Promise<number>;
 		deleteTask: (id: string) => Promise<void>;
 	};
+}
+
+enum TaskStatus {
+	TODO = 'TODO',
+	IN_PROGRESS = 'IN_PROGRESS',
+	DONE = 'DONE',
 }
 
 interface Task {
 	id: string;
 	title: string;
 	description: string;
-	status: 'todo' | 'in-progress' | 'done';
+	status: TaskStatus;
 	timeIntervals: { start: string; end: string }[];
 	totalTrackedTime: number;
 }
-
-type TaskStatus = 'TODO' | 'DOING' | 'DONE';
 
 type CreateTaskData = {
 	title: string;
 	description?: string;
 	startDate: Date;
 	endDate?: Date;
+};
+
+type UpdateTaskData = {
+	title?: string;
+	description?: string;
+	startDate?: Date;
+	endDate?: Date;
+	status?: TaskStatus;
+};
+
+type UpdateTaskStatusData = {
+	status: TaskStatus;
 };

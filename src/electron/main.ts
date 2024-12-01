@@ -24,6 +24,17 @@ ipcMain.handle(
 	}
 );
 
+ipcMain.handle(
+	'update-task',
+	(
+		event: IpcMainInvokeEvent,
+		id: string,
+		data: UpdateTaskData
+	): Promise<number> => {
+		return taskService.updateOne(id, data);
+	}
+);
+
 ipcMain.handle('get-tasks', (): Promise<Task[]> => {
 	return taskService.getAll();
 });

@@ -7,6 +7,9 @@ electron.contextBridge.exposeInMainWorld('electron', {
 	createTask: (data: CreateTaskData): Promise<Task> => {
 		return electron.ipcRenderer.invoke('create-task', data);
 	},
+	updateTask: (id: string, data: UpdateTaskData): Promise<number> => {
+		return electron.ipcRenderer.invoke('update-task', id, data);
+	},
 	deleteTask: (id: string): Promise<void> => {
 		return electron.ipcRenderer.invoke('delete-task', id);
 	},

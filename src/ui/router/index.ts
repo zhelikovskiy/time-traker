@@ -14,9 +14,10 @@ export default createRouter({
 			component: () => import('../views/AboutView.vue'),
 		},
 		{
-			path: '/task',
+			path: '/task/:id',
 			name: 'task',
 			component: () => import('../views/Task/TaskView.vue'),
+			props: true,
 		},
 		{
 			path: '/task/create',

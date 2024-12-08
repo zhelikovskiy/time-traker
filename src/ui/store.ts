@@ -7,10 +7,11 @@ export const useTaskStore = defineStore('tasks', {
 		};
 	},
 	getters: {
-		getTaskById: (state) => {
-			return (id: string) =>
-				state.tasks.find((task) => task.id === id) || undefined;
-		},
+		getTaskById:
+			(state) =>
+			(id: string): Task | undefined => {
+				return state.tasks.find((task) => task.id === id);
+			},
 	},
 	actions: {
 		async fetchTasks() {

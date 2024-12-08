@@ -9,7 +9,6 @@
 				<li>
 					<router-link :to="{ name: 'tasks' }">Task List</router-link>
 				</li>
-				<li><router-link :to="{ name: 'task' }">Task</router-link></li>
 				<li><router-link :to="{ name: 'about' }">About</router-link></li>
 			</ul>
 		</nav>

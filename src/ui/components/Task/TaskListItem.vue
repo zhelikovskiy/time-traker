@@ -7,12 +7,14 @@
 		<span class="task-status" :class="`status-${task.status.toLowerCase()}`">{{
 			task.status
 		}}</span>
+		<button class="more-button" @click="onMore()">More</button>
 		<button class="delete-button" @click="onDelete(task.id)">Delete</button>
 	</li>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
 	name: 'TaskListItem',
@@ -27,11 +29,17 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
+		const router = useRouter();
+
 		const onDelete = async (id: string) => {
 			await props.onDelete(id);
 		};
 
-		return { onDelete };
+		const onMore = () => {
+			router.push({ name: 'task', params: { id: props.task.id } });
+		};
+
+		return { onDelete, onMore };
 	},
 });
 </script>
@@ -77,6 +85,16 @@ export default defineComponent({
 .status-done {
 	background-color: #4caf50;
 	color: white;
+}
+
+.more-button {
+	background-color: #89dd94; /* Красный цвет */
+	color: white;
+	padding: 8px 12px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 10px;
 }
 
 .delete-button {

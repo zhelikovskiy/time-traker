@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import db from './db-service.js';
+import { TaskStatus } from '../types.js';
 
 const createOne = async (data: CreateTaskData): Promise<Task> => {
 	const newTask: Task = {
